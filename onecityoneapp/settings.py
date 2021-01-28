@@ -12,6 +12,7 @@ https://docs.djangoproject.com/en/3.1/ref/settings/
 
 from pathlib import Path
 import os
+import django_heroku
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -26,7 +27,7 @@ SECRET_KEY = 'h^v#0o_wu04=cc_fh(v1lug5_m&rw)rij2ssl0ve4c*y7!8u^n'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['*']
 
 
 # Application definition
@@ -157,3 +158,5 @@ PWA_APP_DIR = 'ltr'
 PWA_APP_LANG = 'en-US'
 
 PWA_SERVICE_WORKER_PATH = os.path.join(BASE_DIR, 'base/static/js', 'serviceworker.js')
+
+django_heroku.settings(locals())
