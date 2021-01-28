@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="en">
+{% load pwa %}
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>One City One App</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    {% load static %}
+    {% progressive_web_app_meta %}
+    <style>
+        html {
+            font-family: "Source Sans Pro", -apple-system, BlinkMacSystemFont, "Segoe UI",
+                Roboto, "Helvetica Neue", Arial, sans-serif;
+            font-size: 16px;
+            word-spacing: 1px;
+            -ms-text-size-adjust: 100%;
+            -webkit-text-size-adjust: 100%;
+            -moz-osx-font-smoothing: grayscale;
+            -webkit-font-smoothing: antialiased;
+            box-sizing: border-box;
+        }
+
+        *,
+        *::before,
+        *::after {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        .header {
+            display: flex;
+            justify-content: space-between;
+            width: 100%;
+            height: auto;
+            padding: 4px 20px;
+            background-image: linear-gradient(to bottom right, #e1f5c4, #ede574);
+        }
+
+        .img-logo {
+            width: 130px;
+            z-index: 1;
+        }
+
+        @media screen and (max-width: 768px) {
+            .img-logo {
+                width: 100px;
+            }
+        }
+
+        .index-services {
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+        }
+
+        @media screen and (max-width: 37.5em) {
+            .index-services {
+                height: 52vh;
+                padding: 0;
+            }
+        }
+
+        @media (min-width: 37.5em) and (max-width: 1024px) {
+            .index-services {
+                height: 56vh;
+            }
+        }
+
+        .index-img {
+            background-image: url("{% static 'images/vidhan_soudha_large.webp' %}");
+            height: 600px;
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+        }
+
+        .img-anchor {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .img-services {
+            border: 4px solid #ede574;
+            border-radius: 50%;
+            width: 140px;
+            height: 140px;
+            background: white;
+            margin: 10px;
+        }
+
+        @media screen and (max-width: 37.5em) {
+            .index-img {
+                background-image: url("{% static 'images/vidhan_soudha_small.webp' %}");
+                height: 220px;
+            }
+
+            .img-services {
+                border-radius: 50%;
+                width: 74px;
+                height: 74px;
+                background: white;
+            }
+        }
+
+        @media (min-width: 37.5em) and (max-width: 1024px) {
+            .index-img {
+                background-image: url("{% static 'images/vidhan_soudha_medium.webp' %}");
+                height: 400px;
+            }
+        }
+
+        .title-services {
+            display: block;
+            text-align: center;
+            font-size: 13px;
+            white-space: nowrap;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="header">
+        <img src="{% static 'images/main_logo.png' %}" class="img-logo" />
+        <div>
+            <span style="
+              display: block;
+              text-align: center;
+              font-size: 17px;
+              font-weight: bold;
+            "><span style="color: red">S</span>mar<span style="color: red">t</span></span>
+            <span style="
+              display: block;
+              text-align: center;
+              font-size: 17px;
+              font-weight: bold;
+            "><span style="color: red">B</span>engalur<span style="color: red">u</span>
+            </span>
+        </div>
+    </div>
+    <div class="index-body">
+        <div class="index-img"></div>
+        <div class="container">
+            <div class="row index-services">
+                {% for obj in applications %}
+                <div class="col-4 col-lg-3">
+                    <a href="{{ obj.url }}" target="blank" class="img-anchor">
+                        <img src="{{ obj.logo.url }}" class="img-services" />
+                    </a>
+                    <span class="title-services">{{ obj.name }}</span>
+                </div>
+                {% endfor %}
+            </div>
+        </div>
+    </div>
+</body>
+
+</html>
